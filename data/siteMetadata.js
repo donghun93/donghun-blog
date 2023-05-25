@@ -3,6 +3,7 @@ const siteMetadata = {
   author: 'Lee Dong Hun',
   headerTitle: 'Donghun Blog',
   mainTitle: 'Latest',
+  postMainTitle: 'All Posts',
   description: '이곳은 제 생각과 감정을 담은 조각들로 가득한 공간입니다.',
   language: 'en-us',
   theme: 'system', // system, dark or light
