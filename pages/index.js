@@ -1,18 +1,30 @@
 import Link from '@/components/Link'
 import { PageSEO } from '@/components/SEO'
-import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import { getAllFilesFrontMatter } from '@/lib/mdx'
 import formatDate from '@/lib/utils/formatDate'
-
-import NewsletterForm from '@/components/NewsletterForm'
+import TagNoLink from '@/components/TagNoLink'
 
 const MAX_DISPLAY = 5
 
 export async function getStaticProps() {
-  const posts = await getAllFilesFrontMatter('blog')
+  const response = await getAuthorDetailAPI()
+  const posts = []
 
+  for (let i = 0; i < response.length; i++) {
+    const obj = { ...response[i] } // 새로운 객체 생성
+
+    obj.date = obj.createdAt
+    delete obj.createdAt
+
+    posts.push(obj) // 새로운 객체를 newData 배열에 추가
+  }
   return { props: { posts } }
+}
+
+async function getAuthorDetailAPI() {
+  const res = await fetch(`http://15.164.15.10:9000/post-service/api/v1/posts`)
+  const data = await res.json()
+  return data.body.content
 }
 
 export default function Home({ posts }) {
@@ -29,11 +41,15 @@ export default function Home({ posts }) {
           </p>
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
-          {!posts.length && 'No posts found.'}
+          {posts.length === 0 && (
+            <h1 className="pt-5 text-3xl font-normal leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-2xl md:leading-12">
+              게시글이 존재하지 않습니다.
+            </h1>
+          )}
           {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
-            const { slug, date, title, summary, tags } = frontMatter
+            const { id, date, title, summary, tags } = frontMatter
             return (
-              <li key={slug} className="py-12">
+              <li key={id} className="py-12">
                 <article>
                   <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                     <dl>
@@ -46,16 +62,13 @@ export default function Home({ posts }) {
                       <div className="space-y-6">
                         <div>
                           <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                            <Link
-                              href={`/blog/${slug}`}
-                              className="text-gray-900 dark:text-gray-100"
-                            >
+                            <Link href={`/blog/${id}`} className="text-gray-900 dark:text-gray-100">
                               {title}
                             </Link>
                           </h2>
                           <div className="flex flex-wrap">
                             {tags.map((tag) => (
-                              <Tag key={tag} text={tag} />
+                              <TagNoLink key={tag.id} text={tag.name} />
                             ))}
                           </div>
                         </div>
@@ -65,7 +78,7 @@ export default function Home({ posts }) {
                       </div>
                       <div className="text-base font-medium leading-6">
                         <Link
-                          href={`/blog/${slug}`}
+                          href={`/blog/${id}`}
                           className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                           aria-label={`Read "${title}"`}
                         >
@@ -91,11 +104,11 @@ export default function Home({ posts }) {
           </Link>
         </div>
       )}
-      {siteMetadata.newsletter.provider !== '' && (
-        <div className="flex items-center justify-center pt-4">
-          <NewsletterForm />
-        </div>
-      )}
+      {/*{siteMetadata.newsletter.provider !== '' && (*/}
+      {/*  <div className="flex items-center justify-center pt-4">*/}
+      {/*    <NewsletterForm />*/}
+      {/*  </div>*/}
+      {/*)}*/}
     </>
   )
 }
