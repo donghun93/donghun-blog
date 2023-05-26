@@ -6,7 +6,7 @@ import TagNoLink from '@/components/TagNoLink'
 
 const MAX_DISPLAY = 5
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const time1 = performance.now()
   const response = await getAuthorDetailAPI()
   const posts = []

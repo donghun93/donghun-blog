@@ -3,7 +3,7 @@ import { get } from './api/getAuthorDetailAPI'
 
 const DEFAULT_LAYOUT = 'AuthorLayout'
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const time1 = performance.now()
   const authorDetails = await get()
   const time2 = performance.now()
