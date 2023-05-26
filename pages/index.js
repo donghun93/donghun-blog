@@ -8,9 +8,10 @@ const MAX_DISPLAY = 5
 
 export async function getServerSideProps() {
   const time1 = performance.now()
-  const response = await getAuthorDetailAPI()
+  const response = await getPostsAPI()
   const posts = []
 
+  console.log(response.length)
   for (let i = 0; i < response.length; i++) {
     const obj = { ...response[i] } // 새로운 객체 생성
 
@@ -24,8 +25,8 @@ export async function getServerSideProps() {
   return { props: { posts } }
 }
 
-async function getAuthorDetailAPI() {
-  const res = await fetch(`http://15.164.15.10:9000/post-service/api/v1/posts`)
+async function getPostsAPI() {
+  const res = await fetch(`http://15.164.15.10:9000/post-service/api/v1/posts?size=${MAX_DISPLAY}`)
   const data = await res.json()
   return data.body.content
 }
