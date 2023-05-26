@@ -7,6 +7,7 @@ import TagNoLink from '@/components/TagNoLink'
 const MAX_DISPLAY = 5
 
 export async function getStaticProps() {
+  const time1 = performance.now()
   const response = await getAuthorDetailAPI()
   const posts = []
 
@@ -18,6 +19,8 @@ export async function getStaticProps() {
 
     posts.push(obj) // 새로운 객체를 newData 배열에 추가
   }
+  const time2 = performance.now()
+  console.log('%s %s', 'Home', (time2 - time1).toFixed(5))
   return { props: { posts } }
 }
 

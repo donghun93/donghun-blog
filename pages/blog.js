@@ -5,6 +5,7 @@ import { PageSEO } from '@/components/SEO'
 export const POSTS_PER_PAGE = 5
 
 export async function getServerSideProps({ query }) {
+  const time1 = performance.now()
   const currentPage = query.page == null ? 1 : query.page
 
   const response = await fetch(
@@ -28,7 +29,8 @@ export async function getServerSideProps({ query }) {
     currentPage: parseInt(currentPage),
     totalPages: data.body.totalPages,
   }
-
+  const time2 = performance.now()
+  console.log('%s %s', 'Blog List', (time2 - time1).toFixed(5))
   return { props: { posts, pagination } }
 }
 

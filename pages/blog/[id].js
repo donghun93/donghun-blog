@@ -6,6 +6,7 @@ import { get } from '../api/getAuthorDetailAPI'
 const DEFAULT_LAYOUT = 'PostLayout'
 
 export async function getServerSideProps({ query }) {
+  const time1 = performance.now()
   const res = await fetch(`http://15.164.15.10:9000/post-service/api/v1/posts/${query.id}`)
   const data = await res.json()
   const body = data.body
@@ -30,6 +31,8 @@ export async function getServerSideProps({ query }) {
 
   const prev = null
   const next = null
+  const time2 = performance.now()
+  console.log('%s %s', 'Blog Detail', (time2 - time1).toFixed(5))
   return { props: { post, authorDetails, prev, next } }
 }
 
