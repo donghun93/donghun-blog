@@ -23,8 +23,7 @@ const CommonSEO = ({ title, description, ogType, ogImage, twImage, canonicalUrl 
       <meta name="twitter:site" content={siteMetadata.twitter} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      {/*<meta name="twitter:image" content={twImage} />*/}
-      <meta name="twitter:image" content={ogImage} key={ogImage} />
+      <meta name="twitter:image" content={twImage} />
       <link
         rel="canonical"
         href={canonicalUrl ? canonicalUrl : `${siteMetadata.siteUrl}${router.asPath}`}
@@ -43,6 +42,18 @@ export const PageSEO = ({ title, description }) => {
       ogType="website"
       ogImage={ogImageUrl}
       twImage={twImageUrl}
+    />
+  )
+}
+
+export const AboutSEO = ({ title, description, image }) => {
+  return (
+    <CommonSEO
+      title={title}
+      description={description}
+      ogType="website"
+      ogImage={image}
+      twImage={image}
     />
   )
 }
