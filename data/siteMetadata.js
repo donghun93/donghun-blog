@@ -7,7 +7,7 @@ const siteMetadata = {
   description: '이곳은 제 생각과 감정을 담은 조각들로 가득한 공간입니다.',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://www.donghun.me/',
+  siteUrl: 'https://www.donghun.me',
   siteRepo: 'https://github.com/donghun93/front-blog',
   siteLogo: '/static/images/logo.png',
   image: '/static/images/avatar.png',

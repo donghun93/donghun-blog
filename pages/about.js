@@ -7,7 +7,7 @@ export async function getServerSideProps() {
   const time1 = performance.now()
   const authorDetails = await get()
   const time2 = performance.now()
-  console.log('%s %s', 'About', (time2 - time1).toFixed(5))
+  // console.log('%s %s', 'About', (time2 - time1).toFixed(5))
   return { props: { authorDetails } }
 }
 
