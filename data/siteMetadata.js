@@ -11,7 +11,7 @@ const siteMetadata = {
   siteRepo: 'https://github.com/donghun93/front-blog',
   siteLogo: '/static/images/logo.png',
   image: '/static/images/avatar.png',
-  socialBanner: '/static/images/twitter-card.png',
+  socialBanner: '/static/images/canada/toronto.jpg',
   email: 'hasfw@naver.com',
   github: 'https://github.com',
   twitter: 'https://twitter.com/Twitter',
