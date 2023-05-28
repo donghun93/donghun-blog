@@ -10,7 +10,6 @@ const Utterances = () => {
     theme === 'dark' || resolvedTheme === 'dark'
       ? siteMetadata.comment.utterancesConfig.darkTheme
       : siteMetadata.comment.utterancesConfig.theme
-
   const COMMENTS_ID = 'comments-container'
 
   const LoadComments = useCallback(() => {
