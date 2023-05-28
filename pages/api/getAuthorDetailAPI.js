@@ -48,6 +48,7 @@ async function convertAuthorDetail(body) {
       twitter: body.twitter,
       linkedin: body.linkedin,
       github: body.github,
+      nickName: body.nickName,
       date: null,
     },
   }

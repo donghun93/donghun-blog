@@ -2,7 +2,8 @@ import Link from '@/components/Link'
 import siteMetadata from '@/data/siteMetadata'
 import Pagination from '@/components/Pagination'
 import formatDate from '@/lib/utils/formatDate'
-import TagNoLink from '@/components/TagNoLink'
+import TagRoundNoLink from '@/components/TagRoundNoLink'
+import React from 'react'
 
 export default function ListLayout({ posts, pagination }) {
   return (
@@ -36,7 +37,7 @@ export default function ListLayout({ posts, pagination }) {
           {/*  </svg>*/}
           {/*</div>*/}
         </div>
-        <ul>
+        <ul className="pt-5">
           {posts.length === 0 && (
             <h1 className="pt-5 text-3xl font-normal leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-2xl md:leading-12">
               게시글이 존재하지 않습니다.
@@ -45,7 +46,7 @@ export default function ListLayout({ posts, pagination }) {
           {posts.map((frontMatter) => {
             const { id, date, title, summary, tags } = frontMatter
             return (
-              <li key={id} className="py-4">
+              <li key={id} className="py-5">
                 <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                   <dl>
                     <dt className="sr-only">Published on</dt>
@@ -55,14 +56,14 @@ export default function ListLayout({ posts, pagination }) {
                   </dl>
                   <div className="space-y-3 xl:col-span-3">
                     <div>
-                      <h3 className="text-2xl font-bold leading-8 tracking-tight">
+                      <h3 className="pb-2 text-2xl font-bold leading-8 tracking-tight">
                         <Link href={`/blog/${id}`} className="text-gray-900 dark:text-gray-100">
                           {title}
                         </Link>
                       </h3>
                       <div className="flex flex-wrap">
                         {tags.map((tag) => (
-                          <TagNoLink key={tag.id} text={tag.name} />
+                          <TagRoundNoLink key={tag.id} text={tag.name} />
                         ))}
                       </div>
                     </div>
@@ -71,6 +72,7 @@ export default function ListLayout({ posts, pagination }) {
                     </div>
                   </div>
                 </article>
+                <hr className="mt-7 border-gray-700" />
               </li>
             )
           })}
