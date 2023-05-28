@@ -32,7 +32,7 @@ export async function getServerSideProps({ query }) {
   const prev = null
   const next = null
   const time2 = performance.now()
-  console.log('%s %s', 'Blog Detail', (time2 - time1).toFixed(5))
+  //console.log('%s %s', 'Blog Detail', (time2 - time1).toFixed(5))
   return { props: { post, authorDetails, prev, next } }
 }
 

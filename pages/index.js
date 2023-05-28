@@ -11,7 +11,6 @@ export async function getServerSideProps() {
   const response = await getPostsAPI()
   const posts = []
 
-  console.log(response.length)
   for (let i = 0; i < response.length; i++) {
     const obj = { ...response[i] } // 새로운 객체 생성
 
@@ -21,7 +20,7 @@ export async function getServerSideProps() {
     posts.push(obj) // 새로운 객체를 newData 배열에 추가
   }
   const time2 = performance.now()
-  console.log('%s %s', 'Home', (time2 - time1).toFixed(5))
+  // console.log('%s %s', 'Home', (time2 - time1).toFixed(5))
   return { props: { posts } }
 }
 

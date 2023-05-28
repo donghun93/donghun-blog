@@ -20,7 +20,6 @@ const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day:
 
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
   const { slug, fileName, date, title, images, tags } = frontMatter
-  console.log(authorDetails)
   return (
     <SectionContainer>
       <BlogSEO
@@ -96,7 +95,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
               {/*  {` • `}*/}
               {/*  <Link href={editUrl(fileName)}>{'View on GitHub'}</Link>*/}
               {/*</div>*/}
-              {/*<Comments frontMatter={frontMatter} />*/}
+              <Comments frontMatter={frontMatter} />
               <hr />
             </div>
             <footer>
