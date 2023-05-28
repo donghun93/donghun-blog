@@ -3,6 +3,7 @@ import { PageSEO } from '@/components/SEO'
 import siteMetadata from '@/data/siteMetadata'
 import formatDate from '@/lib/utils/formatDate'
 import TagRoundNoLink from '@/components/TagRoundNoLink'
+import TagNoLink from '@/components/TagNoLink'
 
 const MAX_DISPLAY = 5
 
@@ -71,7 +72,7 @@ export default function Home({ posts }) {
                           </h2>
                           <div className="flex flex-wrap">
                             {tags.map((tag) => (
-                              <TagRoundNoLink key={tag.id} text={tag.name} />
+                              <TagNoLink key={tag.id} text={tag.name} />
                             ))}
                           </div>
                         </div>

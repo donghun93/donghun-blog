@@ -22,6 +22,7 @@ export async function getServerSideProps({ query }) {
       tags: body.tags,
       draft: false,
       summary: body.summary,
+      layout: 'PostSimple',
     },
   }
 

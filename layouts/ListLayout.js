@@ -4,6 +4,7 @@ import Pagination from '@/components/Pagination'
 import formatDate from '@/lib/utils/formatDate'
 import TagRoundNoLink from '@/components/TagRoundNoLink'
 import React from 'react'
+import TagNoLink from '@/components/TagNoLink'
 
 export default function ListLayout({ posts, pagination }) {
   return (
@@ -63,7 +64,7 @@ export default function ListLayout({ posts, pagination }) {
                       </h3>
                       <div className="flex flex-wrap">
                         {tags.map((tag) => (
-                          <TagRoundNoLink key={tag.id} text={tag.name} />
+                          <TagNoLink key={tag.id} text={tag.name} />
                         ))}
                       </div>
                     </div>

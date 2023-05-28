@@ -6,10 +6,14 @@ import siteMetadata from '@/data/siteMetadata'
 import formatDate from '@/lib/utils/formatDate'
 import Comments from '@/components/comments'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+import Image from '@/components/Image'
+import TagNoLink from '@/components/TagNoLink'
+import TagRoundNoLink from '@/components/TagRoundNoLink'
 
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
-  const { date, title } = frontMatter
-  console.log(frontMatter)
+  const { date, title, tags } = frontMatter
+  const author = authorDetails[0]
+
   return (
     <SectionContainer>
       <BlogSEO url={`${siteMetadata.siteUrl}/blog/${frontMatter.slug}`} {...frontMatter} />
@@ -17,17 +21,37 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
       <article>
         <div>
           <header>
-            <div className="space-y-1 border-b border-gray-200 pb-10 text-center dark:border-gray-700">
-              <dl>
-                <div>
-                  <dt className="sr-only">Published on</dt>
-                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                    <time dateTime={date}>{formatDate(date)}</time>
-                  </dd>
-                </div>
-              </dl>
+            <div className="space-y-1 border-b border-gray-200 pb-5 text-center dark:border-gray-700">
               <div>
                 <PageTitle>{title}</PageTitle>
+
+                {/*<div className="flex items-center justify-center pt-3">*/}
+                <div className="flex items-center pt-3">
+                  {author.avatar && (
+                    <Image
+                      src={author.avatar}
+                      width="38px"
+                      height="38px"
+                      alt="avatar"
+                      className="h-10 w-10 rounded-full"
+                    />
+                  )}
+                  <dd className="pl-2 text-gray-900 dark:text-gray-100">{author.nickName}</dd>
+                  <span className="pl-1 text-gray-500 dark:text-gray-400">·</span>
+                  <dl>
+                    <div>
+                      <dt className="sr-only">Published on</dt>
+                      <dd className="pl-1 text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                        <time dateTime={date}>{formatDate(date)}</time>
+                      </dd>
+                    </div>
+                  </dl>
+                </div>
+                <div className="flex flex-wrap pt-3">
+                  {tags.map((tag) => (
+                    <TagRoundNoLink key={tag.id} text={tag.name} />
+                  ))}
+                </div>
               </div>
             </div>
           </header>
