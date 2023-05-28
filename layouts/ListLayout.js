@@ -72,7 +72,6 @@ export default function ListLayout({ posts, pagination }) {
                     </div>
                   </div>
                 </article>
-                <hr className="mt-7 border-gray-700" />
               </li>
             )
           })}
