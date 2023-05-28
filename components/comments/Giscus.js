@@ -46,7 +46,12 @@ const Giscus = () => {
     script.async = true
 
     const comments = document.getElementById(COMMENTS_ID)
-    if (comments) comments.appendChild(script)
+    if (comments) {
+      while (comments.firstChild) {
+        comments.removeChild(comments.firstChild)
+      }
+      comments.appendChild(script)
+    }
 
     return () => {
       const comments = document.getElementById(COMMENTS_ID)

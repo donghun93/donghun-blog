@@ -24,7 +24,12 @@ const Utterances = () => {
     script.async = true
 
     const comments = document.getElementById(COMMENTS_ID)
-    if (comments) comments.appendChild(script)
+    if (comments) {
+      while (comments.firstChild) {
+        comments.removeChild(comments.firstChild)
+      }
+      comments.appendChild(script)
+    }
 
     return () => {
       const comments = document.getElementById(COMMENTS_ID)
@@ -38,6 +43,11 @@ const Utterances = () => {
     if (!iframe) return
     LoadComments()
   }, [LoadComments])
+
+  // Load comments on component mount
+  useEffect(() => {
+    LoadComments()
+  }, [])
 
   // Added `relative` to fix a weird bug with `utterances-frame` position
   return (
